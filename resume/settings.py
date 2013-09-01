@@ -4,7 +4,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Administrator', 'li.tzuhsien@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -16,7 +16,7 @@ DATABASES = {
         # The following settings are not used with sqlite3:
         'USER': 'root',
         'PASSWORD': 'ligang',
-        'HOST': '127.0.0.01',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'HOST': '127.0.0.1',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '3306',                      # Set to empty string for default.
     }
 }
@@ -124,6 +124,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    
+    # RESTful service framework supports
+    'rest_framework',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -153,4 +156,24 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+# A RESTful API configuration
+# Any global settings for a REST framework API are kept in a 
+# single configuration dictionary named REST_FRAMEWORK. 
+# Start off by adding the following to your settings.py module:
+REST_FRAMEWORK = {
+    # Use hyperlinked styles by default.
+    # Only used if the `serializer_class` attribute is not set on a view.
+    'DEFAULT_MODEL_SERIALIZER_CLASS':
+        'rest_framework.serializers.HyperlinkedModelSerializer',
+
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        'rest_framework.permissions.IsAdminUser'
+    ],
+                  
+    'PAGINATE_BY': 10
 }
