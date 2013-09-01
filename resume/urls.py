@@ -17,5 +17,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     
     # Custom URL configuration should be added here
-    ('^hello/$', hello),
+    ('^hello/$', hello),    
+    url(r'^facet/login$','resume.facet.login', name='login'),
 )
